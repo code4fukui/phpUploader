@@ -161,6 +161,7 @@ function del_certificat(id, key){
     switch (data.status){
       case 'failed':
         openModal('okcansel', '認証が必要です', html, 'confirm_del_button('+id+');');
+        confirmDelkeyInput.value = localStorage.getItem("delkey") || "";
         break;
       case 'ok':
         location.href = './delete.php?id='+data.id+'&key='+data.key;

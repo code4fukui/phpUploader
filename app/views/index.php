@@ -1,4 +1,11 @@
-
+<?php
+if ($master == "hoge") {
+  echo "<div style='text-align: center; margin: 1em; color: red; font-size: 200%'>警告！ config.php にマスターキー(master)が設定されていません！</div>";
+}
+if ($uploadkey == "hoge") {
+  echo "<div style='text-align: center; margin: 1em; color: red; font-size: 200%'>警告！ config.php にUPLOADキー(uploadkey)が設定されていません！</div>";
+}
+?>
 <div class="container">
   <div class="row bg-white radius box-shadow">
     <div class="col-sm-12">
@@ -10,8 +17,12 @@
           <span class="input-group-btn"><button type="button" class="btn btn-primary" onclick="$('input[id=lefile]').click();">Browse</button></span>
         </div>
         <p class="help-block"><?php echo $max_file_size; ?>MBまでのファイルがアップロードできます。<br>対応拡張子： <?php 
-          foreach($extension as $s){
-            echo $s.' ';
+          if (count($extension) == 0) {
+            echo '*';
+          } else {
+           foreach($extension as $s){
+              echo $s.' ';
+            }
           }
          ?></p>
 
@@ -25,8 +36,9 @@
         <div class="row">
           <div class="col-sm-6">
             <div class="form-group">
-              <label for="dlkeyInput">DLキー</label>
-              <input type="text" class="form-control" id="dleyInput" name="dlkey" placeholder="DLキーを入力...">
+              <label for="dlkeyInput">UPLOADキー</label>
+              <input type="text" class="form-control" id="ulInput" name="ulkey" placeholder="UPLOADキーを入力...">
+              <input type="hidden" name="dlkey" value="">
             </div>
           </div>
           <div class="col-sm-6">
@@ -88,7 +100,10 @@
           foreach($data as $s){
             echo '<tr>';
             echo '<td>'.$s['id'].'</td>';
-            echo '<td><a href="javascript:void(0);" onclick="dl_button('.$s['id'].');">'.$s['origin_file_name'].'</a></td>';
+            //echo '<td><a href="javascript:void(0);" onclick="dl_button('.$s['id'].');">'.$s['origin_file_name'].'</a></td>';
+            $basepath = $data_directory;
+            //echo '<td><a target=_blank href="'.$basepath.'/file_'.$s['id'].'.jpg">'.$basepath.'/file_'.$s['id'].'.jpg</a></td>';
+            echo '<td><a target=_blank href="'.$basepath.'/file_'.$s['id'].'.jpg">'.$basepath.'/file_'.$s['id'].'.jpg</a></td>';
             echo '<td>'.$s['comment'].'</td>';
             echo '<td>'.round($s['size'] / (1024*1024), 1 ).'MB</td>';
             echo '<td>'.date("Y/m/d H:i:s", $s['input_date']).'</td>';
@@ -113,6 +128,19 @@
          
       </table>
     </div>
-    <p class="text-right">@<a href="https://github.com/shimosyan/phpUploader" target="_blank">shimosyan/phpUploader</a> v<?php echo $version; ?> (GitHub)</p>
+    <p class="text-right">@<a href="https://github.com/code4fukui/phpUploader" target="_blank">code4fukui/phpUploader</a> forked from @<a href="https://github.com/shimosyan/phpUploader" target="_blank">shimosyan/phpUploader</a> v<?php echo $version; ?> (GitHub)</p>
   </div>
 </div>
+
+<script type="module">
+let rnd = localStorage.getItem("delkey");
+if (!rnd) {
+  rnd = Math.floor(Math.random() * 10000000000);
+  localStorage.setItem("delkey", rnd);
+}
+deleyInput.value = rnd;
+deleyInput.oninput = () => localStorage.setItem("delkey", deleyInput.value);
+
+ulInput.value = localStorage.getItem("uploadkey") || "";
+ulInput.oninput = () => localStorage.setItem("uploadkey", ulInput.value);
+</script>

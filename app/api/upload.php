@@ -6,7 +6,11 @@ ini_set('max_execution_time',300);
 set_time_limit(300);
 header('Content-Type: application/json');
 
+
 $messages = array();
+if ($_POST['ulkey'] == $uploadkey) {
+	$messages[] = 'UPLOADキーをご確認ください。';
+}
 switch ($_FILES['file']['error']) {
 	case UPLOAD_ERR_OK:
 		//値: 0; この場合のみ、ファイルあり
@@ -86,11 +90,13 @@ if($filesize > $max_file_size*1024*1024){
 
 //ファイル拡張子
 $ext = substr( $escaped_file_name, strrpos( $escaped_file_name, '.') + 1);
-if(in_array(mb_strtolower($ext), $extension) === false){
-  $response = array('status' => 'extension_error', 'ext' => $ext);
-  //JSON形式で出力する
-  echo json_encode( $response );
-  exit;
+if (count($extension) > 0) {
+  if(in_array(mb_strtolower($ext), $extension) === false){
+    $response = array('status' => 'extension_error', 'ext' => $ext);
+    //JSON形式で出力する
+    echo json_encode( $response );
+    exit;
+  }
 }
 
 //コメント文字数

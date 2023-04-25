@@ -13,8 +13,12 @@ class config {
     return array(
       // 管理者用キー
       // DLキーとDELキーで使用するマスターキーです。
+      // 参考、パスワードメーカー https://fukuno.jig.jp/app/util/passwordmaker.html
       'master'              => 'hoge',
 
+      // UPLOADキー
+      'uploadkey'           => 'hoge',
+      
       // 各キーの暗号化用ハッシュ
       // ランダムな英数字の羅列を設定してください。
       'key'                 => 'hogehoge',
@@ -31,10 +35,11 @@ class config {
       // 1件あたりの最大ファイルサイズ(単位 : MByte)
       // php.iniのmemory_limit, post_max_size, upload_max_filesizeの値以下になるようにして下さい。
       // nginxを使用している場合はサーバー設定にclient_max_body_sizeをこの値で設定してください。
-      'max_file_size'       => 2,
+      'max_file_size'       => 20,
 
       // アップロードできる拡張子
-      'extension'           => array('zip','rar','lzh'),
+      //'extension'           => array('zip','rar','lzh','jpg'),
+      'extension'           => array(),
 
       // データベースディレクトリ
       'db_directory'        => './db',
