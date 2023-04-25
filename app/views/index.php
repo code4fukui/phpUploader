@@ -101,9 +101,10 @@ if ($uploadkey == "hoge") {
             echo '<tr>';
             echo '<td>'.$s['id'].'</td>';
             //echo '<td><a href="javascript:void(0);" onclick="dl_button('.$s['id'].');">'.$s['origin_file_name'].'</a></td>';
+            $ext = substr($s['origin_file_name'], strrpos($s['origin_file_name'], '.'));
             $basepath = $data_directory;
             //echo '<td><a target=_blank href="'.$basepath.'/file_'.$s['id'].'.jpg">'.$basepath.'/file_'.$s['id'].'.jpg</a></td>';
-            echo '<td><a target=_blank href="'.$basepath.'/file_'.$s['id'].'.jpg">'.$basepath.'/file_'.$s['id'].'.jpg</a></td>';
+            echo '<td><a target=_blank href="'.$basepath.'/file_'.$s['id'].$ext.'">'.$basepath.'/file_'.$s['id'].$ext.'</a></td>';
             echo '<td>'.$s['comment'].'</td>';
             echo '<td>'.round($s['size'] / (1024*1024), 1 ).'MB</td>';
             echo '<td>'.date("Y/m/d H:i:s", $s['input_date']).'</td>';
