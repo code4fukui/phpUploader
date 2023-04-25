@@ -1,42 +1,33 @@
-# Name
+# phpUploader with upload key
 
-phpUploader
+サーバーに設置するだけで使える簡易PHPアップローダー
 
-## Description
-
-サーバーに設置するだけで使える簡易PHPアップローダーです。
-
-![スクリーンショット](https://cloud.githubusercontent.com/assets/26715606/25776917/1b5dbc02-3307-11e7-8155-e2d86c08f4a1.png)
+- UPLOADキーを知る人のみアップロードできます
+- アップロードする際にDELキーを設定できます
 
 ## Requirement
 
-・PHP Version 5.3.3+
-・SQLite (PHPにバンドルされたもので可、一部の環境によってはphp○-sqliteのインストールが必要です。)
+- PHP Version 5.3.3+
+- SQLite (PHPにバンドルされたもので可、一部の環境によってはphp○-sqliteのインストールが必要です。)
 
 ## Usage
 
-ものすごい簡易なアップローダーなので以下の利用を想定しています。
-・少人数且つ、不特定多数ではない利用者間でのファイルのやり取り
+- config/config.php 編集（必須: master, uploadkey）
 
-## Install
+```sh
+php -S 127.0.0.1:8888
+```
 
-①下記URLからダウンロードしたファイルを任意のディレクトリに展開して下さい。
+## Files
 
-<https://github.com/shimosyan/phpUploader/releases>
-
-**注意: v0.1及びv0.2からv1.0以降へのアップデートはできません。**
-
-②config/config.phpを任意の値で編集して下さい。
-
-③設置したディレクトリにapacheまたはnginxの実行権限を付与して下さい。
-
-④この状態でサーバーに接続するとDBファイル(既定値 ./db/uploader.db)とデータ設置用のディレクトリ(既定値 ./data)が作成されます。
-
-⑤configディレクトリとデータ設置用のディレクトリ(既定値 ./data)に.htaccessなどを用いて外部からの接続を遮断させて下さい。
-
-⑥ファイルがアップロードできるよう、PHPとapacheまたはnginxの設定を変更してください。
+- DBファイル 既定値 ./db/uploader.db
+- アップロードファイル 既定値 ./data/*
 
 ## Licence
+
+Code for FUKUI released under the MIT license
+
+- original license
 
 Copyright (c) 2017 shimosyan
 Released under the MIT license
