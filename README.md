@@ -27,7 +27,7 @@ php -S 127.0.0.1:8888
 
 Code for FUKUI released under the MIT license
 
-- original license
+### original license
 
 Copyright (c) 2017 shimosyan
 Released under the MIT license
