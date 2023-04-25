@@ -128,7 +128,7 @@ if ($uploadkey == "hoge") {
          
       </table>
     </div>
-    <p class="text-right">@<a href="https://github.com/code4fukui/phpUploader" target="_blank">code4fukui/phpUploader</a> forked from @<a href="https://github.com/shimosyan/phpUploader" target="_blank">shimosyan/phpUploader</a> v<?php echo $version; ?> (GitHub)</p>
+    <p class="text-right">@<a href="https://github.com/code4fukui/phpUploaderWithKey" target="_blank">code4fukui/phpUploaderWithKey</a> forked from @<a href="https://github.com/shimosyan/phpUploader" target="_blank">shimosyan/phpUploader</a> v<?php echo $version; ?> (GitHub)</p>
   </div>
 </div>
 

@@ -1,4 +1,4 @@
-# phpUploader with upload key
+# phpUploader with key
 
 サーバーに設置するだけで使える簡易PHPアップローダー
 
